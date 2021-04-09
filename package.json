@@ -1,0 +1,11 @@
+{
+  "name": "flashloan-playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "ethers": "^5.1.0",
+    "hardhat": "^2.1.2"
+  }
+}
