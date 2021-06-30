@@ -14,7 +14,7 @@ const ERC20ABI = [
 task("flashloan", async (_, hre) => {
 
     // The address that has USDC on mainnet
-    const walletAddr = '0x6D5a7597896A703Fe8c85775B23395a48f971305'
+    const walletAddr = '0xf977814e90da44bfa03b6295a0616a897441acec'
 
     const crUSDCAddr = '0x44fbeBd2F576670a6C33f6Fc0B00aA8c5753b322'
     const USDCAddr = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
