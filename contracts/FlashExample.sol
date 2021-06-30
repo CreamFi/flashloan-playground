@@ -17,6 +17,8 @@ interface ICTokenFlashloan {
 contract FlashloanExample is IFlashloanReceiver {
 
     address public owner;
+    address public executor;  // TEMPORARY: allowed executor
+
     constructor() public {
       owner = msg.sender;
     }
@@ -27,11 +29,14 @@ contract FlashloanExample is IFlashloanReceiver {
         bytes memory data = "0x";
 
         // call the flashLoan method
+        executor = cToken;
         ICTokenFlashloan(cToken).flashLoan(address(this), borrowAmount, data);
+        executor = address(0);
     }
 
     // this function is called after your contract has received the flash loaned amount
     function executeOperation(address sender, address underlying, uint amount, uint fee, bytes calldata params) external {
+        require(msg.sender == executor);
         address cToken = msg.sender;
 
         uint currentBalance = IERC20(underlying).balanceOf(address(this));
