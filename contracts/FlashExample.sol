@@ -3,6 +3,7 @@ pragma solidity ^0.5.16;
 interface IERC20 {
     function balanceOf(address _owner) external view returns (uint256 balance);
     function transfer(address _to, uint256 _value) external returns (bool success);
+    function approve(address spender, uint256 amount) external returns (bool success);
 }
 
 interface IFlashloanReceiver {
@@ -11,6 +12,7 @@ interface IFlashloanReceiver {
 
 interface ICTokenFlashloan {
     function flashLoan(address receiver, uint amount, bytes calldata params) external;
+    function mint(uint256 amount) external returns (uint);
 }
 
 // FlashloanReceiver is a simple flashloan receiver sample code
@@ -49,7 +51,10 @@ contract FlashloanExample is IFlashloanReceiver {
 
 
         // transfer fund + fee back to cToken
-        require(IERC20(underlying).transfer(cToken, amount + fee), "Transfer fund back failed");
+        IERC20(underlying).approve(cToken, amount + fee);
+        ICTokenFlashloan(cToken).mint(amount+fee);
+
+        //require(IERC20(underlying).transfer(cToken, amount + fee), "Transfer fund back failed");
     }
 }
 
