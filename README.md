@@ -1,8 +1,8 @@
 # CREAM Flash Loan playground
 
-*This repo is an example ONLY. DO NOT use it in production enviorment and* **USE AS YOUR OWN RISK**
+*This repo is an example ONLY. DO NOT use it in production enviorment and* **USE AT YOUR OWN RISK**
 
-This repo allows user to play around with our flashloan on mainnet forking environment
+This repo allows users to play around with our flashloan on mainnet forked environment
 
 ## Install
 
