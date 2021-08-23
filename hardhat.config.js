@@ -15,9 +15,8 @@ task("flashloan", async (_, hre) => {
 
     // The address that has USDC on mainnet
     const walletAddr = '0xf977814e90da44bfa03b6295a0616a897441acec'
-
-    const crUSDCAddr = '0x44fbeBd2F576670a6C33f6Fc0B00aA8c5753b322'
     const USDCAddr = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+    const flashloanLenderAddr = ''
 
     await hre.network.provider.request({
       method: "hardhat_impersonateAccount",
@@ -25,22 +24,22 @@ task("flashloan", async (_, hre) => {
     });
 
     const wallet = await hre.ethers.provider.getSigner(walletAddr);
-    const factory = await hre.ethers.getContractFactory('FlashloanExample');
+    const factory = await hre.ethers.getContractFactory('FlashloanBorrower');
 
-    // deploy flashloan example contract
-    const flashloanExampleContract = await factory.deploy();
+    // deploy flashloan Borrower contract
+    const flashloanBorrowerContract = await factory.deploy();
 
-    // Send 100 USDC to flash loan example contract,
+    // Send 100 USDC to flash loan Borrower contract,
     // so that you have enough fund to pay the fee.
     const USDC = new ethers.Contract(USDCAddr, ERC20ABI, wallet);
-    let tx = await USDC.transfer(flashloanExampleContract.address, 100 * 1e6)
+    let tx = await USDC.transfer(flashloanBorrowerContract.address, 100 * 1e6)
     await tx.wait()
 
 
-    console.log('contract:', flashloanExampleContract.address);
+    console.log('contract:', flashloanBorrowerContract.address);
 
     // call the doFlashloan
-    tx = await flashloanExampleContract.doFlashloan(crUSDCAddr, 10000 * 1e6);
+    tx = await flashloanBorrowerContract.doFlashloan(flashloanLenderAddr, USDCAddr, 10000 * 1e6);
     const receipt = await tx.wait()
 
     // see the result
