@@ -48,6 +48,6 @@ npx hardhat compile
 npx hardhat flashloan
 ```
 
-You can modify `FlashLoanExample.sol` and flashloan task code in `hardhat.config.js` to
+You can modify `FlashLoanBorrower.sol` and flashloan task code in `hardhat.config.js` to
 play around flashloan feature on mainnet fork.
 Don't forget to re-compile your contract when you modify it.
