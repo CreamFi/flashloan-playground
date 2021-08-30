@@ -45,7 +45,11 @@ npx hardhat compile
 ## Run the flashloan task
 
 ```
-npx hardhat flashloan
+npx hardhat flashloanV1
+```
+or
+```
+npx hardhat flashloanIronBank
 ```
 
 You can modify `FlashLoanBorrower.sol` and flashloan task code in `hardhat.config.js` to
