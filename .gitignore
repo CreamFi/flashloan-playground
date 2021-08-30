@@ -1,4 +1,6 @@
-# Logs
+cache/*
+artifacts/*
+
 logs
 *.log
 npm-debug.log*
